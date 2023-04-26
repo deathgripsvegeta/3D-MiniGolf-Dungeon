@@ -4,7 +4,8 @@ using UnityEngine;
 
 public class CharacterControls : MonoBehaviour
 {
-    
+    [SerializeField] private float _moveSpeed = 10f;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -14,6 +15,13 @@ public class CharacterControls : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+        Movement();
+    }
+    void Movement()
+    {
+        float xValue = Input.GetAxis("Horizontal") * _moveSpeed * Time.deltaTime;
+        float zValue = Input.GetAxis("Vertical") * _moveSpeed * Time.deltaTime;
+
+        transform.Translate(xValue, 0f, zValue);
     }
 }
