@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 public class GameManager : MonoBehaviour
 {
     [SerializeField] public GameObject Ball; 
@@ -21,12 +22,16 @@ public class GameManager : MonoBehaviour
     }
     private void OnCollisionEnter(Collision other) 
     {
-        if(other.gameObject.CompareTag("Player"))
+        if(this.gameObject.CompareTag("Player"))
         {
-            if(this.gameObject.CompareTag("ball"))
+            if(other.gameObject.CompareTag("ball"))
             {
                 Debug.Log("hit ball");
             }
         }
+    }
+    public void ResetLevel()
+    {
+        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
     }
 }
