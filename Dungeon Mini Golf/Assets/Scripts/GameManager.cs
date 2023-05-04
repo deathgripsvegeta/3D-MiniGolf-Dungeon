@@ -22,9 +22,9 @@ public class GameManager : MonoBehaviour
     }
     private void OnCollisionEnter(Collision other) 
     {
-        if(this.gameObject.CompareTag("Player"))
+        if(this.gameObject.tag == "ball")
         {
-            if(other.gameObject.CompareTag("ball"))
+            if(other.gameObject.tag == "Player")
             {
                 Debug.Log("hit ball");
             }
