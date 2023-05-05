@@ -6,13 +6,14 @@ using UnityEngine.SceneManagement;
 public class GameManager : MonoBehaviour
 {
     [SerializeField] public GameObject Ball; 
+    [SerializeField] private Rigidbody _ballRB;
     [SerializeField] public GameObject Player;
     [SerializeField] public Slider hitForceSlider;
     [SerializeField] public float hitForce;
     // Start is called before the first frame update
     void Start()
     {
-        
+        _ballRB.GetComponent<Rigidbody>();
     }
 
     // Update is called once per frame
@@ -34,4 +35,18 @@ public class GameManager : MonoBehaviour
     {
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
     }
+    private void OnCollisionEnter2D(Collision2D other)
+    {
+        if(this.gameObject.CompareTag("Player"))
+        {
+            if(other.gameObject.CompareTag("ball"))
+            {
+                Rigidbody _ballRB = other.gameObject.GetComponent<Rigidbody>();
+                Vector2 awayFromPlayer = (other.gameObject.transform.position - transform.position); 
+                _ballRB.AddForce(awayFromPlayer * hitForce, ForceMode.Impulse);
+                hitForceSlider.gameObject.SetActive(false);
+            }
+        }
+    }
 }
+
