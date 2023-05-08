@@ -9,10 +9,13 @@ public class GameManager : MonoBehaviour
     [SerializeField] private Rigidbody _ballRB;
     [SerializeField] public GameObject Player;
     [SerializeField] public Slider hitForceSlider;
+    [SerializeField] public GameObject StartMenu;
+    [SerializeField] public GameObject EndMenu;
     [SerializeField] public float hitForce;
     // Start is called before the first frame update
     void Start()
     {
+        Time.timeScale = 0;
         _ballRB.GetComponent<Rigidbody>();
     }
 
@@ -35,6 +38,16 @@ public class GameManager : MonoBehaviour
     {
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
     }
+    public void StartTheGame()
+    {
+        Time.timeScale = 1;
+        StartMenu.gameObject.SetActive(false);
+    }
+    public void EndTheGame()
+    {
+        Time.timeScale = 0;
+        EndMenu.gameObject.SetActive(true);
+    }
     private void OnCollisionEnter2D(Collision2D other)
     {
         if(this.gameObject.CompareTag("Player"))
@@ -48,5 +61,13 @@ public class GameManager : MonoBehaviour
             }
         }
     }
+    private void OnTriggerEnter(Collider other) {
+
+        if(other.gameObject.CompareTag("ball"))
+        {
+            EndTheGame();
+        }
+    }
+    
 }
 
