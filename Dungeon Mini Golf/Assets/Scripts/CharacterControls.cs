@@ -5,6 +5,8 @@ using UnityEngine;
 public class CharacterControls : MonoBehaviour
 {
     [SerializeField] private float _moveSpeed = 10f;
+    public GameObject Club;
+    public bool ClubIsActive = false;
 
     // Start is called before the first frame update
     void Start()
@@ -16,6 +18,16 @@ public class CharacterControls : MonoBehaviour
     void Update()
     {
         Movement();
+        if(Input.GetKeyDown(KeyCode.P) && !ClubIsActive)
+        {
+            Club.SetActive(true);
+            ClubIsActive = true;
+        }
+        else if(Input.GetKeyDown(KeyCode.P) && ClubIsActive)
+        {
+            Club.SetActive(false);
+            ClubIsActive = false;
+        }
     }
     void Movement()
     {
