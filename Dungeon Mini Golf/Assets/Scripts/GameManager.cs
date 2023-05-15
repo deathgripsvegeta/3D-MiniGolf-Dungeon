@@ -63,10 +63,14 @@ public class GameManager : MonoBehaviour
     }
     private void OnTriggerEnter(Collider other) {
 
-        if(other.gameObject.CompareTag("ball"))
+        if(this.gameObject.CompareTag("goal"))
         {
-            EndTheGame();
+            if(other.gameObject.CompareTag("ball"))
+            {
+                EndTheGame();
+            }
         }
+       
     }
     
 }
