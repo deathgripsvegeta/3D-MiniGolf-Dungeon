@@ -4,7 +4,8 @@ using UnityEngine;
 
 public class CharacterControls : MonoBehaviour
 {
-    [SerializeField] private float _moveSpeed = 10f;
+    [SerializeField] private float _moveSpeed = 1f;
+    [SerializeField] public float _rotateMoveSpeed = 1f;
     public GameObject Club;
     public bool ClubIsActive = false;
 
@@ -31,9 +32,10 @@ public class CharacterControls : MonoBehaviour
     }
     void Movement()
     {
-        float xValue = Input.GetAxis("Horizontal") * _moveSpeed * Time.deltaTime;
-        float zValue = Input.GetAxis("Vertical") * _moveSpeed * Time.deltaTime;
-
+        float zValue = Input.GetAxis("Horizontal") * _moveSpeed * Time.deltaTime;
+        float xValue = Input.GetAxis("Vertical") * _moveSpeed * Time.deltaTime;
+        Vector3 movementDirection = new Vector3(xValue, 0f, zValue);
+        movementDirection.Normalize();
         transform.Translate(xValue, 0f, zValue);
     }
 }

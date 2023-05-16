@@ -65,8 +65,9 @@ public class GameManager : MonoBehaviour
 
         if(this.gameObject.CompareTag("goal"))
         {
-            if(other.gameObject.CompareTag("ball"))
+            if(Ball.gameObject.CompareTag("ball"))
             {
+                Debug.Log("ended the game");
                 EndTheGame();
             }
         }
