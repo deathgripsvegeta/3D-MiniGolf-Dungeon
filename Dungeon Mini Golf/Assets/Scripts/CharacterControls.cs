@@ -32,11 +32,11 @@ public class CharacterControls : MonoBehaviour
     }
     void Movement()
     {
-        float xValue = Input.GetAxis("Horizontal") * moveSpeed * Time.deltaTime;
+        float xValue = Input.GetAxis("Horizontal") * rotateMoveSpeed * Time.deltaTime;
         float zValue = Input.GetAxis("Vertical") * moveSpeed * Time.deltaTime;
 
-        transform.Translate(Vector3.forward * zValue * moveSpeed * Time.deltaTime);
-        transform.Translate(Vector3.up * xValue * rotateMoveSpeed * Time.deltaTime);
+        transform.Translate(Vector3.forward * zValue);
+        transform.Rotate(Vector3.up * xValue);
         
     }
 }
